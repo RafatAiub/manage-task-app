@@ -1,36 +1,48 @@
-import React from 'react';
+import React from "react";
 
 const Login = () => {
-    return (
-        <div class="flex hero h-screen bg-accent justify-center items-center ">
-
-            <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                <div class="card-body">
-                    <div class="form-control">
-                        <h1 className='text-center text-2xl'>Login</h1>
-                        <label class="label">
-                            <span class="label-text">Email</span>
-                        </label>
-                        <input type="text" placeholder="email" class="input input-bordered" />
-                    </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Password</span>
-                        </label>
-                        <input type="text" placeholder="password" class="input input-bordered" />
-                        <label class="label">
-                            <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
-                        </label>
-                    </div>
-                    <div class="form-control mt-6">
-                        <button class="btn btn-primary">Login</button>
-                        <div className='divider'>OR</div>
-                        <button class="btn btn-glass hover:btn-accent">Continue With Google</button>
-                    </div>
-                </div>
-            </div>
+  const onSubmit = () => {};
+  return (
+    <div className="flex hero h-screen bg-accent justify-center items-center ">
+      <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card-body">
+          <div className="form-control">
+            <h1 className="text-center text-2xl">Login</h1>
+            <label className="label">
+              <span className="label-text">User Name</span>
+            </label>
+            <input
+              type="text"
+              placeholder="user-name"
+              className="input input-bordered"
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="text"
+              placeholder="password"
+              className="input input-bordered"
+            />
+            <label className="label">
+              <a href="#" className="label-text-alt link link-hover">
+                Forgot password?
+              </a>
+            </label>
+          </div>
+          <div className="form-control mt-6">
+            <button className="btn btn-primary">Login</button>
+            {/* <div className="divider">OR</div>
+            <button className="btn btn-glass hover:btn-accent">
+              Continue With Google
+            </button> */}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Login;
