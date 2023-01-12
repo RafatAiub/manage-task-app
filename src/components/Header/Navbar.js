@@ -1,51 +1,82 @@
-import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-// import useAdmin from '../hooks/useAdmin';
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  // const [admin] = useAdmin();
-  // const [pathname] = useLocation();
-  // const [dark, setDark] = useState(false);
-  // use it inside div>> data-theme={dark ? "dark" : "light"}
+  const navigate = useNavigate();
   return (
-    <div className="navbar bg-base-300">
-      <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
-      </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li tabIndex={0}>
-            <a>
-              Parent
+    <div class="drawer drawer-end">
+      <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex flex-col">
+        <div class="w-full navbar bg-base-300 lg:px-20 fixed top-0 z-50">
+          <label
+            tabIndex="0"
+            for="my-drawer-2"
+            class="btn btn-ghast drawer-button lg:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h7"
+              />
+            </svg>
+          </label>
+
+          <div class="flex-1 px-2 mx-2 text-2xl">Clean Co.</div>
+          <div class="flex-none lg:hidden">
+            <label for="my-drawer-3" class="btn btn-square btn-ghost">
               <svg
-                className="fill-current"
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                fill="none"
                 viewBox="0 0 24 24"
+                class="inline-block w-6 h-6 stroke-current"
               >
-                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
               </svg>
-            </a>
-            <ul className="p-2 bg-base-100">
+            </label>
+          </div>
+
+          <div class="flex-none hidden lg:block">
+            <ul class="menu menu-horizontal gap-x-2">
               <li>
-                <a>Submenu 1</a>
+                <NavLink to="dashboard" className="rounded-lg">
+                  Dashboard
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/tasks" className="rounded-lg">
+                  Tasks
+                </NavLink>
               </li>
               <li>
-                <a>Submenu 2</a>
+                <NavLink to="/dashboard/members" className="rounded-lg">
+                  Members
+                </NavLink>
+              </li>
+
+              <li class="dropdown dropdown-hover dropdown-end ">
+                <label
+                  tabindex="0"
+                  class="btn btn-primary  btn-outline rounded-lg "
+                >
+                  logout
+                </label>
               </li>
             </ul>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn">Get started</a>
+          </div>
+        </div>
       </div>
     </div>
   );

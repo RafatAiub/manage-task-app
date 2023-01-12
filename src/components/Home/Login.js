@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const onSubmit = () => {};
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [authenticate, setAuthenticate] = useState(
+    localStorage.getItem(localStorage.getItem("authenticate") || false)
+  );
+  const users = [{ username: "admin", password: "1" }];
+  console.log(authenticate, username, password);
+  const handleSubmit = () => {
+    const account = users.find((user) => user.username === username);
+    if (account && account.password === password) {
+      setAuthenticate(true);
+      localStorage.setItem("authenticated", true);
+      navigate("/main");
+    }
+  };
   return (
     <div className="flex hero h-screen bg-accent justify-center items-center ">
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -15,6 +31,8 @@ const Login = () => {
               type="text"
               placeholder="user-name"
               className="input input-bordered"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="form-control">
@@ -25,6 +43,8 @@ const Login = () => {
               type="text"
               placeholder="password"
               className="input input-bordered"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <label className="label">
               <a href="#" className="label-text-alt link link-hover">
@@ -33,7 +53,13 @@ const Login = () => {
             </label>
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Login</button>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={() => handleSubmit()}
+            >
+              Login
+            </button>
             {/* <div className="divider">OR</div>
             <button className="btn btn-glass hover:btn-accent">
               Continue With Google
