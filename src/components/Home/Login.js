@@ -8,14 +8,21 @@ const Login = () => {
   const [authenticate, setAuthenticate] = useState(
     localStorage.getItem(localStorage.getItem("authenticate") || false)
   );
-  const users = [{ username: "admin", password: "1" }];
+  const users = [
+    { username: "admin", password: "1" },
+    { username: "rafat", password: "2" },
+    { username: "rohan", password: "3" },
+    { username: "azrin", password: "4" },
+  ];
   console.log(authenticate, username, password);
   const handleSubmit = () => {
     const account = users.find((user) => user.username === username);
+    const currentUser = account.username;
+    console.log(account);
     if (account && account.password === password) {
       setAuthenticate(true);
       localStorage.setItem("authenticated", true);
-      navigate("/main");
+      navigate(`/dashboard/${currentUser}`);
     }
   };
   return (
