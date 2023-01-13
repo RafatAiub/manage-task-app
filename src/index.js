@@ -7,6 +7,7 @@ import Login from "./components/Home/Login";
 import Main from "./components/main/Main";
 import Tasks from "./components/Dashboard/Tasks";
 import Members from "./components/Dashboard/Members";
+import AssignTask from "./components/Dashboard/AssignTask";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,6 +18,7 @@ root.render(
         <Route path="/" element={<Login />} />
         <Route path="dashboard/:user" element={<Main />} />
         <Route path="/dashboard/tasks" element={<Tasks />} />
+        <Route path="/add-task" element={<AssignTask />} />
         <Route path="/dashboard/members" element={<Members />} />
       </Routes>
     </BrowserRouter>

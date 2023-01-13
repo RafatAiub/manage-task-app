@@ -79,7 +79,7 @@ const Navbar = ({ children, user }) => {
                 className="collapse border border-base-300 bg-base-100 rounded-box"
               >
                 <div className="p-3 border-gray-700 text-xl font-medium">
-                  {user}
+                  hi ! {user}
                 </div>
               </div>
 
