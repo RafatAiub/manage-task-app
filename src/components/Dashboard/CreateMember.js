@@ -3,54 +3,26 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Navbar from "../Header/Navbar";
 
-const AssignTask = () => {
+const CreateMember = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const options = [
-    {
-      label: "Apple",
-
-      value: "apple",
-    },
-
-    {
-      label: "Mango",
-
-      value: "mango",
-    },
-
-    {
-      label: "Banana",
-
-      value: "banana",
-    },
-
-    {
-      label: "Pineapple",
-
-      value: "pineapple",
-    },
-  ];
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [assignTo, setAssignTO] = useState();
-  console.log(title, description, assignTo);
-
   return (
     <Navbar>
       <div className="flex hero h-screen bg-accent justify-center items-center ">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
             <div className="form-control">
-              <h1 className="text-center text-2xl">Assign New Task</h1>
+              <h1 className="text-center text-2xl">Create New Members</h1>
               <label className="label">
-                <span className="label-text">Title</span>
+                <span className="label-text">Name</span>
               </label>
               <input
                 type="text"
                 placeholder="task description"
                 className="input input-bordered"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="form-control">
@@ -61,23 +33,11 @@ const AssignTask = () => {
                 type="text"
                 placeholder="description"
                 className="textarea textarea-bordered"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            <select
-              className="select select-bordered w-full max-w-xs"
-              value={assignTo}
-              onChange={(e) => setAssignTO(e.target.value)}
-            >
-              <option disabled selected>
-                Assign To
-              </option>
-              {options.map((option) => (
-                <option value={option.value}>{option.label}</option>
-              ))}
-            </select>
             <div className="form-control mt-6">
               <button
                 className="btn btn-primary"
@@ -91,7 +51,7 @@ const AssignTask = () => {
               <button
                 className="btn btn-primary"
                 type="button"
-                onClick={() => navigate("/dashboard/tasks")}
+                onClick={() => navigate("/dashboard/members")}
               >
                 Go Back
               </button>
@@ -104,4 +64,4 @@ const AssignTask = () => {
   );
 };
 
-export default AssignTask;
+export default CreateMember;
