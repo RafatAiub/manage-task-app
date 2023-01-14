@@ -9,7 +9,7 @@ const Members = () => {
   const goTo = () => {
     navigate("/create-new-member");
   };
-  const table = [
+  const member_table = [
     { numberOfTask: "1 ", assignTo: "rafat" },
     { numberOfTask: "2 ", assignTo: "rohan" },
     {
@@ -38,7 +38,7 @@ const Members = () => {
                       <th>Number Of Tasks</th>
                     </tr>
                   </thead>
-                  {table.map((data) => {
+                  {member_table.map((data) => {
                     return <MemberTable data={data} />;
                   })}
                 </table>

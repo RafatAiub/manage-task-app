@@ -1,39 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 import Footer from "../Footer/Footer";
 import Navbar from "../Header/Navbar";
 
 const AssignTask = () => {
+  const [task, setTask] = useState([]);
+  console.log(task);
+
+  //fetch tasks
+  const fetchTask = async () => {
+    const res = await api.get("/tasks");
+    return res.data;
+  };
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const allTasks = await fetchTask();
+      if (allTasks) setTask(allTasks);
+    };
+    getTasks();
+  }, []);
   const navigate = useNavigate();
   const options = [
     {
-      label: "Apple",
+      label: "rafat",
 
-      value: "apple",
+      value: "rafat",
     },
 
     {
-      label: "Mango",
+      label: "rohan",
 
-      value: "mango",
+      value: "rohan",
     },
 
     {
-      label: "Banana",
+      label: "azrin",
 
-      value: "banana",
+      value: "azrin",
     },
 
     {
-      label: "Pineapple",
+      label: "ahnaf",
 
-      value: "pineapple",
+      value: "ahnaf",
     },
   ];
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [assignTo, setAssignTO] = useState();
-  console.log(title, description, assignTo);
+
+  const addTask = async () => {
+    const req = {
+      id: (task.length + 1).toString(),
+      title: title,
+      description: description,
+      assignTo: assignTo,
+    };
+
+    const res = await api.post("/tasks", req);
+
+    console.log(res);
+  };
 
   return (
     <Navbar>
@@ -82,7 +112,9 @@ const AssignTask = () => {
               <button
                 className="btn btn-primary"
                 type="submit"
-                //   onClick={() => handleSubmit()}
+                onClick={() => {
+                  addTask();
+                }}
               >
                 Assign
               </button>

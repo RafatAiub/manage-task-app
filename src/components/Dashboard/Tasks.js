@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Header/Navbar";
 import TaskTable from "./TaskTable";
+import api from "../../api/api";
 
 const Tasks = () => {
+  const [task, setTask] = useState([]);
+  console.log(task);
   const navigator = useNavigate();
   const goTo = () => {
     navigator("/add-task");
   };
-  const table = [
+
+  //fetch tasks
+  const fetchTask = async () => {
+    const res = await api.get("/tasks");
+    return res.data;
+  };
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const allTasks = await fetchTask();
+      if (allTasks) setTask(allTasks);
+    };
+    getTasks();
+  }, []);
+  const task_table = [
     { title: "module Design", creationDate: "1 jan,2023", assignTo: "rafat" },
     { title: "Design pages", creationDate: "2 jan,2023", assignTo: "rohan" },
     {
@@ -40,7 +57,7 @@ const Tasks = () => {
                   <th>Date</th>
                 </tr>
               </thead>
-              {table.map((data) => {
+              {task.map((data) => {
                 return <TaskTable data={data} />;
               })}
             </table>
