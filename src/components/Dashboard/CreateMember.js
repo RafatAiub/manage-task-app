@@ -1,11 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 import Footer from "../Footer/Footer";
 import Navbar from "../Header/Navbar";
 
 const CreateMember = () => {
+  const [member, setMember] = useState([]);
+  console.log(member);
+
+  //fetch members
+  const fetchMember = async () => {
+    const res = await api.get("/members");
+    return res.data;
+  };
+
+  useEffect(() => {
+    const getMembers = async () => {
+      const allMembers = await fetchMember();
+      if (allMembers) setMember(allMembers);
+    };
+    getMembers();
+  }, []);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+
+  const addMember = async () => {
+    const req = {
+      id: (member.length + 1).toString(),
+      name: name,
+      email: email,
+    };
+
+    const res = await api.post("/members", req);
+
+    console.log(res);
+  };
   const navigate = useNavigate();
   return (
     <Navbar>
@@ -19,7 +48,7 @@ const CreateMember = () => {
               </label>
               <input
                 type="text"
-                placeholder="task description"
+                placeholder="member description"
                 className="input input-bordered"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -29,9 +58,9 @@ const CreateMember = () => {
               <label className="label">
                 <span className="label-text">Description</span>
               </label>
-              <textarea
-                type="text"
-                placeholder="description"
+              <input
+                type="email"
+                placeholder="email"
                 className="textarea textarea-bordered"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -42,7 +71,9 @@ const CreateMember = () => {
               <button
                 className="btn btn-primary"
                 type="submit"
-                //   onClick={() => handleSubmit()}
+                onClick={() => {
+                  addMember();
+                }}
               >
                 Assign
               </button>

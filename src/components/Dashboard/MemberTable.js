@@ -1,11 +1,12 @@
 import React from "react";
 
-const MemberTable = ({ data }) => {
+const MemberTable = ({ d }) => {
+  console.log(d.name, d.totalNumberOfTask);
   return (
     <tbody>
       <tr>
-        <td>{data.assignTo}</td>
-        <td>{data.numberOfTask}</td>
+        <td>{d.name}</td>
+        <td>{d.totalNumberOfTask}</td>
         <td>
           <button className="btn btn-outline btn-info">update</button>
         </td>

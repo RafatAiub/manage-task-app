@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = ({ children, user }) => {
-  console.log(user);
   // const [pathname] = useLocation();
   // const [dark, setDark] = useState(false);
   // use it inside div>> data-theme={dark ? "dark" : "light"}

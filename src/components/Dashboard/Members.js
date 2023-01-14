@@ -1,29 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 import Footer from "../Footer/Footer";
 import Navbar from "../Header/Navbar";
 import MemberTable from "./MemberTable";
 
 const Members = () => {
+  const [member, setMember] = useState([]);
+  const [data, setData] = useState([]);
+
+  console.log(data);
+
+  const findOcc = (arr, key) => {
+    let arr2 = [];
+
+    arr.forEach((x) => {
+      // Checking if there is any object in arr2
+      // which contains the key value
+      if (
+        arr2.some((val) => {
+          return val[key] === x[key];
+        })
+      ) {
+        // If yes! then increase the totalNumberOfTask by 1
+        arr2.forEach((k) => {
+          if (k[key] === x[key]) {
+            k["totalNumberOfTask"]++;
+          }
+        });
+      } else {
+        // If not! Then create a new object initialize
+        // it with the present iteration key's value and
+        // set the totalNumberOfTask to 1
+        let a = {};
+        a[key] = x[key];
+        a["totalNumberOfTask"] = 1;
+        arr2.push(a);
+      }
+    });
+
+    return arr2;
+  };
+
+  //fetch members
+  const fetchMember = async () => {
+    const res = await api.get("/members");
+    return res.data;
+  };
+
+  useEffect(() => {
+    const getMembers = async () => {
+      const allMembers = await fetchMember();
+      if (allMembers) setMember(allMembers);
+    };
+    getMembers();
+  }, []);
   const navigate = useNavigate();
   const goTo = () => {
     navigate("/create-new-member");
   };
-  const member_table = [
-    { numberOfTask: "1 ", assignTo: "rafat" },
-    { numberOfTask: "2 ", assignTo: "rohan" },
-    {
-      numberOfTask: "3 ",
-      assignTo: "azrin",
-    },
-    { numberOfTask: "4 ", assignTo: "ahnaf" },
-    { numberOfTask: "5 ", assignTo: "arosh" },
-    { numberOfTask: "6 ", assignTo: "shehtaj" },
-    {
-      numberOfTask: "7 ",
-      assignTo: "fabihan",
-    },
-  ];
+
+  //passing name as key from member obj && this findOcc function return an new obj with {name,totalNumberOfTask} pair
+  let key = "name";
+  useEffect(() => {
+    const finalData = findOcc(member, key);
+    setData(finalData);
+    console.log(finalData);
+  }, [member, key]);
+
   return (
     <Navbar>
       <div className="mockup-window border border-base-300 mt-5">
@@ -38,9 +82,10 @@ const Members = () => {
                       <th>Number Of Tasks</th>
                     </tr>
                   </thead>
-                  {member_table.map((data) => {
-                    return <MemberTable data={data} />;
-                  })}
+                  {data.length &&
+                    data.map((d) => {
+                      return <MemberTable d={d} />;
+                    })}
                 </table>
               </div>
               <div>
