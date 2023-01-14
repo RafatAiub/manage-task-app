@@ -14,11 +14,11 @@ const Login = () => {
     { username: "rohan", password: "3" },
     { username: "azrin", password: "4" },
   ];
-  console.log(authenticate, username, password);
+  //console.log(authenticate, username, password);
   const handleSubmit = () => {
     const account = users.find((user) => user.username === username);
     const currentUser = account.username;
-    console.log(account);
+    //console.log(account);
     if (account && account.password === password) {
       setAuthenticate(true);
       localStorage.setItem("authenticated", true);

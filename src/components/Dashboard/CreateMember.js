@@ -6,7 +6,7 @@ import Navbar from "../Header/Navbar";
 
 const CreateMember = () => {
   const [member, setMember] = useState([]);
-  console.log(member);
+  //console.log(member);
 
   //fetch members
   const fetchMember = async () => {
@@ -33,7 +33,7 @@ const CreateMember = () => {
 
     const res = await api.post("/members", req);
 
-    console.log(res);
+    //console.log(res);
   };
   const navigate = useNavigate();
   return (
@@ -48,7 +48,7 @@ const CreateMember = () => {
               </label>
               <input
                 type="text"
-                placeholder="member description"
+                placeholder="enter member name"
                 className="input input-bordered"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -56,11 +56,11 @@ const CreateMember = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Description</span>
+                <span className="label-text">Email</span>
               </label>
               <input
                 type="email"
-                placeholder="email"
+                placeholder="example.. xyz@gmail.com"
                 className="textarea textarea-bordered"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -73,6 +73,7 @@ const CreateMember = () => {
                 type="submit"
                 onClick={() => {
                   addMember();
+                  navigate("/dashboard/tasks");
                 }}
               >
                 Assign

@@ -7,7 +7,7 @@ import api from "../../api/api";
 
 const Tasks = () => {
   const [task, setTask] = useState([]);
-  console.log(task);
+  //console.log(task);
   const navigator = useNavigate();
   const goTo = () => {
     navigator("/add-task");
@@ -26,23 +26,6 @@ const Tasks = () => {
     };
     getTasks();
   }, []);
-  const task_table = [
-    { title: "module Design", creationDate: "1 jan,2023", assignTo: "rafat" },
-    { title: "Design pages", creationDate: "2 jan,2023", assignTo: "rohan" },
-    {
-      title: "check responsiveness",
-      creationDate: "3 jan,2023",
-      assignTo: "azrin",
-    },
-    { title: "Draw Diagram", creationDate: "4 jan,2023", assignTo: "ahnaf" },
-    { title: "Testing", creationDate: "5 jan,2023", assignTo: "arosh" },
-    { title: "Set Character", creationDate: "6 jan,2023", assignTo: "shehtaj" },
-    {
-      title: "re-check-functionality",
-      creationDate: "7 jan,2023",
-      assignTo: "fabihan",
-    },
-  ];
 
   return (
     <Navbar>

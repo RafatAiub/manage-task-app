@@ -9,7 +9,7 @@ const Members = () => {
   const [member, setMember] = useState([]);
   const [data, setData] = useState([]);
 
-  console.log(data);
+  //console.log(data);
 
   const findOcc = (arr, key) => {
     let arr2 = [];
@@ -44,7 +44,7 @@ const Members = () => {
 
   //fetch members
   const fetchMember = async () => {
-    const res = await api.get("/members");
+    const res = await api.get("/tasks");
     return res.data;
   };
 
@@ -61,11 +61,11 @@ const Members = () => {
   };
 
   //passing name as key from member obj && this findOcc function return an new obj with {name,totalNumberOfTask} pair
-  let key = "name";
+  let key = "assignTo";
   useEffect(() => {
     const finalData = findOcc(member, key);
     setData(finalData);
-    console.log(finalData);
+    //console.log(finalData);
   }, [member, key]);
 
   return (

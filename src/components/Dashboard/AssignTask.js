@@ -6,54 +6,36 @@ import Navbar from "../Header/Navbar";
 
 const AssignTask = () => {
   const [task, setTask] = useState([]);
-  console.log(task);
+  const [member, setMember] = useState([]);
+  //console.log(member);
 
   //fetch tasks
   const fetchTask = async () => {
     const res = await api.get("/tasks");
     return res.data;
   };
+  const fetchMember = async () => {
+    const res = await api.get("/members");
+    return res.data;
+  };
 
   useEffect(() => {
-    const getTasks = async () => {
+    const getData = async () => {
       const allTasks = await fetchTask();
+      const allMembers = await fetchMember();
       if (allTasks) setTask(allTasks);
+      if (allMembers) setMember(allMembers);
     };
-    getTasks();
+    getData();
   }, []);
   const navigate = useNavigate();
-  const options = [
-    {
-      label: "rafat",
-
-      value: "rafat",
-    },
-
-    {
-      label: "rohan",
-
-      value: "rohan",
-    },
-
-    {
-      label: "azrin",
-
-      value: "azrin",
-    },
-
-    {
-      label: "ahnaf",
-
-      value: "ahnaf",
-    },
-  ];
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [assignTo, setAssignTO] = useState();
 
   const addTask = async () => {
-    const req = {
+    const req = await {
       id: (task.length + 1).toString(),
       title: title,
       description: description,
@@ -61,8 +43,7 @@ const AssignTask = () => {
     };
 
     const res = await api.post("/tasks", req);
-
-    console.log(res);
+    //console.log(res);
   };
 
   return (
@@ -104,8 +85,8 @@ const AssignTask = () => {
               <option disabled selected>
                 Assign To
               </option>
-              {options.map((option) => (
-                <option value={option.value}>{option.label}</option>
+              {member.map((m) => (
+                <option value={m.name}>{m.name}</option>
               ))}
             </select>
             <div className="form-control mt-6">
@@ -114,6 +95,7 @@ const AssignTask = () => {
                 type="submit"
                 onClick={() => {
                   addTask();
+                  navigate("/dashboard/tasks");
                 }}
               >
                 Assign
