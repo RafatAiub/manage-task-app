@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserHook from "../Hooks/UserHook";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -8,21 +9,25 @@ const Login = () => {
   const [authenticate, setAuthenticate] = useState(
     localStorage.getItem(localStorage.getItem("authenticate") || false)
   );
-  const users = [
-    { username: "admin", password: "1" },
-    { username: "rafat", password: "2" },
-    { username: "rohan", password: "3" },
-    { username: "azrin", password: "4" },
-  ];
+
+  const users = UserHook();
+  console.log(users);
+
+  // const users = [
+  //   { username: "admin", password: "1" },
+  //   { username: "rafat", password: "2" },
+  //   { username: "rohan", password: "3" },
+  //   { username: "azrin", password: "4" },
+  // ];
   //console.log(authenticate, username, password);
   const handleSubmit = () => {
     const account = users.find((user) => user.username === username);
     const currentUser = account.username;
-    //console.log(account);
+    console.log(account);
     if (account && account.password === password) {
       setAuthenticate(true);
       localStorage.setItem("authenticated", true);
-      navigate(`/dashboard/${currentUser}`);
+      navigate(`/dashboard`);
     }
   };
   return (

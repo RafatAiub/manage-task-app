@@ -5,20 +5,20 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Header/Navbar";
 
 const Main = () => {
-  const { user } = useParams();
-  const navigate = useNavigate();
-  if (!localStorage.authenticated) {
-    navigate("/");
-  } else
-    return (
-      <>
-        <Navbar user={user}>
-          <Dashboard />
-        </Navbar>
+  // const navigate = useNavigate();
+  // if (!localStorage.authenticated) {
+  //   console.log(localStorage);
+  //   navigate("/");
+  // } else
+  return (
+    <>
+      <Navbar>
+        <Dashboard />
+      </Navbar>
 
-        <Footer />
-      </>
-    );
+      <Footer />
+    </>
+  );
 };
 
 export default Main;

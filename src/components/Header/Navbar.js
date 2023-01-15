@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import UserHook from "../Hooks/UserHook";
 
-const Navbar = ({ children, user }) => {
+const Navbar = ({ children }) => {
+  const admin = UserHook();
+  // console.log(admin[0]?.username);
   const changeAuthentication = () => {
     localStorage.authenticated = "false";
   };
@@ -52,7 +55,7 @@ const Navbar = ({ children, user }) => {
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal gap-x-2">
               <li>
-                <NavLink to="/dashboard/:user" className="rounded-lg">
+                <NavLink to="/dashboard" className="rounded-lg">
                   Dashboard
                 </NavLink>
               </li>
@@ -69,7 +72,11 @@ const Navbar = ({ children, user }) => {
               </li>
 
               <li>
-                <NavLink to="/" className="rounded-lg" onClick={() => {}}>
+                <NavLink
+                  to="/"
+                  className="rounded-lg"
+                  onClick={changeAuthentication}
+                >
                   Log Out
                 </NavLink>
               </li>
@@ -78,7 +85,7 @@ const Navbar = ({ children, user }) => {
                 className="collapse border border-base-300 bg-base-100 rounded-box"
               >
                 <div className="p-3 border-gray-700 text-xl font-medium">
-                  hi ! {user}
+                  hi ! {admin[0]?.username}
                 </div>
               </div>
 
@@ -129,7 +136,7 @@ const Navbar = ({ children, user }) => {
             tabIndex="0"
             className="collapse border border-base-300 bg-base-100 rounded-box"
           >
-            <div className="p-3 text-xl font-medium">{user}</div>
+            <div className="p-3 text-xl font-medium">{admin[0]?.username}</div>
           </div>
           <li>
             <NavLink

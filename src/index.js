@@ -22,7 +22,7 @@ root.render(
         <Route index element={<App />} />
         <Route path="/" element={<Login />} />
 
-        <Route path="dashboard/:user" element={<Main />} />
+        <Route path="/dashboard" element={<Main />} />
         <Route path="/dashboard/tasks" element={<Tasks />} />
         <Route path="/add-task" element={<AssignTask />} />
         <Route path="/update-task/:id" element={<UpdateTask />} />
