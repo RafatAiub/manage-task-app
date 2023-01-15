@@ -15,7 +15,7 @@ const TaskTable = ({ data }) => {
       <tr>
         <td>{data.title}</td>
         <td>{data.assignTo}</td>
-        {/* <td>{data.creationDate}</td> */}
+        <td>{new Date().toLocaleString()}</td>
         <td>
           <button
             className="btn btn-outline btn-info"

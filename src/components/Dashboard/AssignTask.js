@@ -35,15 +35,17 @@ const AssignTask = () => {
   const [assignTo, setAssignTO] = useState();
 
   const addTask = async () => {
-    const req = {
-      id: (task.length + 1).toString(),
-      title: title,
-      description: description,
-      assignTo: assignTo,
-    };
+    if (title !== "") {
+      const req = {
+        id: "id" + new Date().getTime(),
+        title: title,
+        description: description,
+        assignTo: assignTo,
+      };
 
-    const res = await api.post("/tasks", req);
-    //console.log(res);
+      const res = await api.post("/tasks", req);
+      console.log(res);
+    }
   };
 
   return (
@@ -62,6 +64,7 @@ const AssignTask = () => {
                 className="input input-bordered"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
@@ -86,7 +89,9 @@ const AssignTask = () => {
                 Assign To
               </option>
               {member.map((m) => (
-                <option value={m.name}>{m.name}</option>
+                <option value={m.name} key={m.id}>
+                  {m.name}
+                </option>
               ))}
             </select>
             <div className="form-control mt-6">

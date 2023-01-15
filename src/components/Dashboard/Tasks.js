@@ -32,16 +32,21 @@ const Tasks = () => {
       <div className="hero min-h-screen bg-base-200 ">
         <div className="hero-content flex-col lg:flex-row">
           <div className="overflow-x-auto border-red-200">
+            <div>
+              <h1 className="text-5xl font-bold justify-center p-10">
+                Welcome to Task list page!
+              </h1>
+            </div>
             <table className="table w-full border rounded-lg">
               <thead>
                 <tr>
                   <th>Name</th>
                   <th>Assign to</th>
-                  {/* <th>Date</th> */}
+                  <th>Date</th>
                 </tr>
               </thead>
               {task.map((data) => {
-                return <TaskTable data={data} />;
+                return <TaskTable data={data} key={data.id} />;
               })}
             </table>
           </div>

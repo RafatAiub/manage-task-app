@@ -32,7 +32,9 @@ const Navbar = ({ children }) => {
               />
             </svg>
           </label>
-
+          <div className="w-24 mask mask-hexagon">
+            <img src="https://cdn0.iconfinder.com/data/icons/logistics-4/512/pad-512.png" />
+          </div>
           <div className="flex-1 px-2 mx-2 text-2xl">Task Manager...</div>
           <div className="flex-none lg:hidden">
             <label for="my-drawer-3" className="btn btn-square btn-ghost">

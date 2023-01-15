@@ -70,29 +70,32 @@ const Members = () => {
 
   return (
     <Navbar>
-      <div className="mockup-window border border-base-300 mt-5">
-        <div className="justify-center px-4 py-4 border-t border-base-300">
-          <div className="hero max-h-screen bg-base-200 ">
-            <div className="hero-content flex-col lg:flex-row">
-              <div className="overflow-x-auto border-red-200">
-                <table className="table w-full border rounded-lg">
-                  <thead>
-                    <tr>
-                      <th>Member Name</th>
-                      <th>Number Of Tasks</th>
-                    </tr>
-                  </thead>
-                  {data.length &&
-                    data.map((d) => {
-                      return <MemberTable d={d} />;
-                    })}
-                </table>
-              </div>
+      <div className="justify-center px-4 py-4 border-t border-base-300">
+        <div className="hero min-h-screen bg-base-200 ">
+          <div className="hero-content flex-col lg:flex-row">
+            <div className="overflow-x-auto border-red-200">
               <div>
-                <button className="btn btn-outline btn-success" onClick={goTo}>
-                  Create New Member
-                </button>
+                <h1 className="text-5xl font-bold justify-center p-10">
+                  Welcome to Member page!
+                </h1>
               </div>
+              <table className="table w-full border rounded-lg">
+                <thead>
+                  <tr>
+                    <th>Member Name</th>
+                    <th>Number Of Tasks</th>
+                  </tr>
+                </thead>
+                {data.length &&
+                  data.map((d) => {
+                    return <MemberTable d={d} key={d.index} />;
+                  })}
+              </table>
+            </div>
+            <div>
+              <button className="btn btn-outline btn-success " onClick={goTo}>
+                Create New Member
+              </button>
             </div>
           </div>
         </div>
