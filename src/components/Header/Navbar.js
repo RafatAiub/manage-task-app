@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import UserHook from "../Hooks/UserHook";
 
 const Navbar = ({ children }) => {
-  const admin = UserHook();
+  // const admin = UserHook();
   // console.log(admin[0]?.username);
   const changeAuthentication = () => {
     localStorage.authenticated = "false";
@@ -87,7 +87,7 @@ const Navbar = ({ children }) => {
                 className="collapse border border-base-300 bg-base-100 rounded-box"
               >
                 <div className="p-3 border-gray-700 text-xl font-medium">
-                  hi ! {admin[0]?.username}
+                  hi ! Admin
                 </div>
               </div>
 
@@ -138,7 +138,7 @@ const Navbar = ({ children }) => {
             tabIndex="0"
             className="collapse border border-base-300 bg-base-100 rounded-box"
           >
-            <div className="p-3 text-xl font-medium">{admin[0]?.username}</div>
+            <div className="p-3 text-xl font-medium">Admin</div>
           </div>
           <li>
             <NavLink

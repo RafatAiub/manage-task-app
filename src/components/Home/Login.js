@@ -10,15 +10,15 @@ const Login = () => {
     localStorage.getItem(localStorage.getItem("authenticate") || false)
   );
 
-  const users = UserHook();
-  console.log(users);
+  // const users = UserHook();
+  // console.log(users);
 
-  // const users = [
-  //   { username: "admin", password: "1" },
-  //   { username: "rafat", password: "2" },
-  //   { username: "rohan", password: "3" },
-  //   { username: "azrin", password: "4" },
-  // ];
+  const users = [
+    { username: "admin", password: "123" },
+    { username: "rafat", password: "234" },
+    { username: "rohan", password: "345" },
+    { username: "azrin", password: "456" },
+  ];
   //console.log(authenticate, username, password);
   const handleSubmit = () => {
     const account = users.find((user) => user.username === username);

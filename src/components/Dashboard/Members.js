@@ -9,7 +9,7 @@ const Members = () => {
   const [member, setMember] = useState([]);
   const [data, setData] = useState([]);
 
-  //console.log(data);
+  console.log(data);
 
   const findOcc = (arr, key) => {
     let arr2 = [];
