@@ -1,5 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:3006/",
+  baseURL:
+    "https://manage-task-app-json-server-qn2i-gazf2t76v-rafataiub.vercel.app/",
 });
