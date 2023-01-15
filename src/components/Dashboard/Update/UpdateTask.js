@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../../api/api";
-import Footer from "../Footer/Footer";
-import Navbar from "../Header/Navbar";
+import { useNavigate, useParams } from "react-router-dom";
+import api from "../../../api/api";
+import Footer from "../../Footer/Footer";
+import Navbar from "../../Header/Navbar";
 
-const AssignTask = () => {
-  const [task, setTask] = useState([]);
+const UpdateTask = () => {
+  const { id } = useParams();
+  console.log(id);
   const [member, setMember] = useState([]);
   //console.log(member);
 
-  //fetch tasks
-  const fetchTask = async () => {
-    const res = await api.get("/tasks");
-    return res.data;
-  };
   const fetchMember = async () => {
     const res = await api.get("/members");
     return res.data;
@@ -21,9 +17,7 @@ const AssignTask = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const allTasks = await fetchTask();
       const allMembers = await fetchMember();
-      if (allTasks) setTask(allTasks);
       if (allMembers) setMember(allMembers);
     };
     getData();
@@ -34,16 +28,15 @@ const AssignTask = () => {
   const [description, setDescription] = useState("");
   const [assignTo, setAssignTO] = useState();
 
-  const addTask = async () => {
+  const updateTask = async () => {
     const req = {
-      id: (task.length + 1).toString(),
       title: title,
       description: description,
       assignTo: assignTo,
     };
 
-    const res = await api.post("/tasks", req);
-    //console.log(res);
+    const res = await api.put(`/tasks/${id}`, req);
+    console.log(res);
   };
 
   return (
@@ -52,13 +45,13 @@ const AssignTask = () => {
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
             <div className="form-control">
-              <h1 className="text-center text-2xl">Assign New Task</h1>
+              <h1 className="text-center text-2xl">Edit Task Details</h1>
               <label className="label">
                 <span className="label-text">Title</span>
               </label>
               <input
                 type="text"
-                placeholder="task description"
+                placeholder="update title"
                 className="input input-bordered"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -70,7 +63,7 @@ const AssignTask = () => {
               </label>
               <textarea
                 type="text"
-                placeholder="description"
+                placeholder="edit.. description"
                 className="textarea textarea-bordered"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -83,7 +76,7 @@ const AssignTask = () => {
               onChange={(e) => setAssignTO(e.target.value)}
             >
               <option disabled selected>
-                Assign To
+                choose member
               </option>
               {member.map((m) => (
                 <option value={m.name}>{m.name}</option>
@@ -94,11 +87,11 @@ const AssignTask = () => {
                 className="btn btn-primary"
                 type="submit"
                 onClick={() => {
-                  addTask();
+                  updateTask();
                   navigate("/dashboard/tasks");
                 }}
               >
-                Assign
+                Update
               </button>
             </div>
             <div className="form-control mt-6">
@@ -118,4 +111,4 @@ const AssignTask = () => {
   );
 };
 
-export default AssignTask;
+export default UpdateTask;

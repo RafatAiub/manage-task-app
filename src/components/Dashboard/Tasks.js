@@ -37,7 +37,7 @@ const Tasks = () => {
                 <tr>
                   <th>Name</th>
                   <th>Assign to</th>
-                  <th>Date</th>
+                  {/* <th>Date</th> */}
                 </tr>
               </thead>
               {task.map((data) => {

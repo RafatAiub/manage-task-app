@@ -9,6 +9,8 @@ import Tasks from "./components/Dashboard/Tasks";
 import Members from "./components/Dashboard/Members";
 import AssignTask from "./components/Dashboard/AssignTask";
 import CreateMember from "./components/Dashboard/CreateMember";
+import UpdateTask from "./components/Dashboard/Update/UpdateTask";
+import NotFound from "./NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,8 +22,10 @@ root.render(
         <Route path="dashboard/:user" element={<Main />} />
         <Route path="/dashboard/tasks" element={<Tasks />} />
         <Route path="/add-task" element={<AssignTask />} />
+        <Route path="/update-task/:id" element={<UpdateTask />} />
         <Route path="/create-new-member" element={<CreateMember />} />
         <Route path="/dashboard/members" element={<Members />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
