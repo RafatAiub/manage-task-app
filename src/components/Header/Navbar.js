@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = ({ children, user }) => {
-  // const [pathname] = useLocation();
-  // const [dark, setDark] = useState(false);
-  // use it inside div>> data-theme={dark ? "dark" : "light"}
+  const changeAuthentication = () => {
+    localStorage.authenticated = "false";
+  };
   return (
     <div className="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -69,7 +69,7 @@ const Navbar = ({ children, user }) => {
               </li>
 
               <li>
-                <NavLink to="/" className="rounded-lg">
+                <NavLink to="/" className="rounded-lg" onClick={() => {}}>
                   Log Out
                 </NavLink>
               </li>
@@ -132,7 +132,11 @@ const Navbar = ({ children, user }) => {
             <div className="p-3 text-xl font-medium">{user}</div>
           </div>
           <li>
-            <NavLink to="/" className="rounded-lg">
+            <NavLink
+              to="/"
+              className="rounded-lg"
+              onClick={changeAuthentication}
+            >
               Log Out
             </NavLink>
           </li>
